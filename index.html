@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Bar</title>
+    <link href=".//style.css" rel="stylesheet" type="text/css" />
+    <script src=".//index.js"></script>
+  </head>
+
+  
+<header>
+  <!-- <div class="menu-toggle" id="hamburger">
+      <i class="fas fa-bars"></i>
+  </div> -->
+  <div class="overlay"></div>
+  <div class="container">
+      <nav>
+          <h1 class="brand"><a href="index.html">Official<span>Dom</span>ains.in</a></h1>
+          <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+          </ul>
+      </nav>
+  </div>
+</header>
+
+  <body>
+    <form action="./search_results.html" method="get" class="search-bar" id = "myForm" onsubmit="handleSubmit(event)">
+      <input type="text" name="search_query" placeholder="Search" id = "input_query"/>
+      <button type="submit" class="search-btn" id = "btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#fff"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+          />
+        </svg>
+      </button>
+    </form>
+  </body>
+</html>
