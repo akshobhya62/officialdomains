@@ -1,4 +1,4 @@
-var open = document.getElementById('hamburger');
+var open = document.getElementById('hamburger');//div element inside search_result.html
 var changeIcon = true;
 
 let result = 0;
