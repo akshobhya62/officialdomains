@@ -1,48 +1,293 @@
+<!-- /*
+* Template Name: Property
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src=".//index.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles2.css" /> 
-    <link href=".//style.css" rel="stylesheet" type="text/css" />
-    <header>
-      <div class="menu-toggle" id="hamburger">
-          <i class="fas fa-bars"></i>
-      </div>
-      <div class="overlay"></div>
-      <div class="container">
-          <nav>
-              <h1 class="brand"><a href="index.html">Official<span>Dom</span>ains.in</a></h1>
-              <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Contact</a></li>
-              </ul>
-          </nav>
-      </div>
-    </header>
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="favicon.png" />
 
-  
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
 
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+
+    <link rel="stylesheet" href="css/tiny-slider.css" />
+    <link rel="stylesheet" href="css/aos.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>
+      Search Results 
+    </title>
+  </head>
+  <body>
     <script>
+        // execution of program starts here 
+          const urlParams = new URLSearchParams(window.location.search);
+          const inputValue = urlParams.get('query');
+          reqServer(inputValue);
+  
+          async function reqServer(searchQuery){
+              
+              //add to div replace to div
+     
+               let result;
+               try{
+                     const req = 'https://green-coati-shoe.cyclic.app/search/' + searchQuery;
+                     console.log(req);
+                     const response = await fetch(req, {method: 'GET', headers: {
+                         'Content-Type': 'application/json'
+                     }});
+                   result = await response.json();
+                   show(result);
+               }
+               finally{
+                 
+                 
+               }
+                     
+                 
+             }
+  
+          function show(data){
+            console.log(data.length)
+            if(data.length == 0)
+            {
+              window.location.replace("./noresults.html")
+            }
+            else{
+              var table = '<div class = "container">';
+              table += '<table border=0 class="center">';
+              var tr = "";
+              for(let i = 0; i < data.length; i++) {
+                var str = "";
+                if(i % 2 == 0)str = "bg-white"
+                else str = "bg-light"
+                  tr += "<tr>" + `<td><div class="card ${str} border-0">
+                                  <div class="card-body d-flex justify-content-between" >
+                                    <h5 class= "card-title">${data[i].name}</h5>
+                                    <a href="${data[i].link}" target = "__blank" class="btn btn-primary">Visit website</a>
+  
+                                  </div>
+                                </div></td>`  + "</tr>";
+              }
+              table += tr + "</table>";
+              table += '</div>'
+              document.getElementById('table').innerHTML += table;
+            }
+          }
+          
+          
+  
+          
+      </script>
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icofont-close js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
 
-        const url = window.location.href;
-        const searchParams = new URL(url).searchParams;
-        const out = new URLSearchParams(searchParams).entries();
-        const query = Array.from(out)[0].toString().slice(0, -1);
-        console.log("query = ", query);
+    <nav class="site-nav">
+      <div class="container">
+        <div class="menu-bg-wrap">
+          <div class="site-navigation">
+            <a href="index.html" class="logo m-0 float-start">OfficalDomains.in</a>
 
-        // window.addEventListener("DOMContentLoaded", (event) => {
-            // reqServer(query);
-        // });
-        reqServer(query);
-    </script>
-    
-</body>
+            <ul
+              class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+            >
+              <li><a href="index.html">Home</a></li>
+              <li class = "active"><a href="about.html">About</a></li> 
+              <li><a href="team.html">Team</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <a
+              href="#"
+              class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+              data-toggle="collapse"
+              data-target="#main-navbar"
+            >
+              <span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div
+      class="hero page-inner overlay"
+      style="background-image: url('images/hero_bg_3.jpg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">Looks like we found something</h1>
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                  search results
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="row text-left mb-5">
+          <div class="col-12">
+            <h2 class="font-weight-bold heading text-primary mb-4">Search Results</h2>
+          </div>
+          <div class="col-lg" id = "table">
+                <!-- results will be injected here by the script above-->
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Contact</h3>
+              <address>Bangalore, Karnataka India - 560048</address>
+              <ul class="list-unstyled links">
+                
+                <li>
+                  <a href="officialdomains4india@gmail.com ">OfficialDomains4India@gmail.com</a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Sources</h3>
+              <ul class="list-unstyled float-start links">
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Vision</a></li>
+                <li><a href="#">Mission</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy</a></li>
+              </ul>
+              <ul class="list-unstyled float-start links">
+                <li><a href="#">Partners</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Creative</a></li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Links</h3>
+              <ul class="list-unstyled links">
+                <li><a href="#">Our Vision</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact us</a></li>
+              </ul>
+
+              <ul class="list-unstyled social">
+                <li>
+                  <a href="#"><span class="icon-instagram"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-twitter"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-facebook"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-linkedin"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-pinterest"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-dribbble"></span></a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row mt-5">
+          <div class="col-12 text-center">
+            <!-- 
+              **==========
+              NOTE: 
+              Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+              **==========
+            -->
+
+            <p>
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              . All Rights Reserved. 
+            </p>
+            
+          </div>
+        </div>
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.site-footer -->
+
+    <!-- Preloader -->
+    <div id="overlayer"></div>
+    <div class="loader">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/tiny-slider.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/counter.js"></script>
+    <script src="js/custom.js"></script>
+  </body>
 </html>
